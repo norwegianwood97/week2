@@ -1,5 +1,3 @@
-# 모든 것을 무시
-*
-
-# `prisma` 폴더와 그 안의 내용은 예외적으로 추적
-!prisma/
+node_modules
+# Keep environment variables out of version control
+.env
