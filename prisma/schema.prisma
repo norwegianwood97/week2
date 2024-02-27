@@ -1,0 +1,37 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Review {
+  id         Int      @id @default(autoincrement())
+  bookTitle  String
+  title      String
+  content    String
+  starRating Int
+  author     String
+  password   String  
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  comments   Comment[]
+
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  reviewId  Int
+  content   String
+  author    String
+  password  String  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  review    Review   @relation(fields: [reviewId], references: [id])
+}
